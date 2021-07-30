@@ -3,10 +3,36 @@ const geolib = require('geolib')
 
 module.exports = {
     index:async (req, res) => {
-        let shippin = await Shipping.findAll()
-        let distance = geolib.getDistance({ latitude: 51.5103, longitude: 7.49347 },
-            { latitude: "51° 31' N", longitude: "7° 28' E" })
-        console.log(distance);
-        res.send('distancia entre a y b ' + (distance/1000) +'km')
+
+    },
+    create: async (req, res) => {
+        let data = req.body
+        let aprox_distance = geolib.getDistance(
+            {lat:Number(data.origin_lat), lng:Number(data.origin_long)},
+            {lat:Number(data.end_lat), lng:Number(data.end_long)})
+        let newShipping = Shipping.create({
+            ...req.body,
+            current_lat: data.origin_lat,
+            current_long: data.origin_long,
+            aprox_distance
+        })
+        res.json({
+            meta:{
+                status: 200,
+                message: 'Ok'
+            },
+            data: {
+                ...data,
+                aprox_distance
+            }
+        })
+    },
+    update: async (req, res) => {
+        let data = req.body
+        // let updateShipping = Shipping.update({
+        //     ...req.body,
+        //     aprox_distance
+        // },
+        // {where: {id:req.params.id}})
     }
 }
