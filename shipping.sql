@@ -16,4 +16,3 @@ CREATE TABLE shippings(
     finish_at TIMESTAMP NULL
  );
  
- INSERT INTO shippings VALUES('Carlos','Entrega a Carlos','Entregado',-34.61315000,-58.37723000,-31.41330000,-64.18105000,-31.41350000,-64.18105000,0.022,'2021-07-31 12:18:06')

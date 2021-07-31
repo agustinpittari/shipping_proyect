@@ -36,7 +36,7 @@ module.exports = {
                 ...req.body,
                 aprox_distance
             });
-            res.status(200).json({message: 'Creado con exito'});
+            res.status(200).json({message: 'Registro creado con exito'});
         }catch(err){res.send(err)};
     },
     update: async (req, res) => {
@@ -65,7 +65,7 @@ module.exports = {
                 }
             });
 
-            res.json(updateShipping);
+            res.json({message: 'Registro modificado con exito'});
 
         }catch(err){res.send(err)};
 
